@@ -1,0 +1,12 @@
+"0","#fichier release
+release<-read_csv(""dataarchives/release.csv"") 
+"
+"2","New names:"
+"2","[1mRows: [22m[34m15414593[39m [1mColumns: [22m[34m6[39m"
+"2","[36m--[39m [1mColumn specification[22m [36m-----------------------------------------------------------------------------------------------------------------------------------------[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (2): title, country
+[32mdbl[39m (4): ...1, id, master_id, date"
+"2","
+[36mi[39m Use `spec()` to retrieve the full column specification for this data.
+[36mi[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."

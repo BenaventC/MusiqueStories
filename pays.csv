@@ -1,0 +1,286 @@
+,pays,Freq,pays2
+1,Abkhazia,6,Asia
+2,Afghanistan,43,Asia
+3,Africa,74,Africa
+4,Albania,519,Europe
+5,Algeria,665,Arabic
+6,American Samoa,1,USA
+7,Andorra,491,Europe
+8,Angola,1487,Africa
+9,Anguilla,9,Central America
+10,Antigua & Barbuda,179,Central America
+11,Argentina,83713,South America
+12,Armenia,278,Europe
+13,Aruba,49,Central America
+14,Asia,1401,Asia
+15,Australasia,10364,Australia
+16,Australia,293822,Australia
+17,Australia & New Zealand,10417,Australia
+18,Austria,66951,Europe
+19,Azerbaijan,1170,Asia
+20,"Bahamas, The",440,Central America
+21,Bahrain,57,Arabic
+22,Bangladesh,232,Asia
+23,Barbados,3271,Central America
+24,Belarus,5264,Europe
+25,Belgian Congo,62,Africa
+26,Belgium,150649,Europe
+27,Belize,111,Central America
+28,Benelux,8240,Europe
+29,Benin,182,Africa
+30,Bermuda,142,Central America
+31,Bhutan,19,Asia
+32,Bolivia,8499,South America
+33,Bosnia & Herzegovina,3380,Europe
+34,Botswana,40,Africa
+35,Brazil,178002,Brazil
+36,British Virgin Islands,6,Central America
+37,Brunei,61,Asia
+38,Bulgaria,20958,Europe
+39,Burkina Faso,34,Africa
+40,Burma,76,Asia
+41,Cambodia,101,Asia
+42,Cameroon,246,Africa
+43,Canada,448310,Canada
+44,Cape Verde,216,Africa
+45,Cayman Islands,88,Central America
+46,Central African Republic,12,Africa
+47,Central America,238,Central America
+48,Chile,33486,South America
+49,China,17480,Asia
+50,Colombia,39486,South America
+51,Comoros,5,Africa
+52,"Congo, Democratic Republic of the",312,Africa
+53,"Congo, Republic of the",150,Africa
+54,Cook Islands,14,Australia
+55,Costa Rica,5245,Central America
+56,Croatia,18179,Europe
+57,Cuba,3383,Central America
+58,Cura�ao,142,Central America
+59,Cyprus,1384,Europe
+60,Czech Republic,43580,Europe
+61,Czech Republic & Slovakia,3135,Europe
+62,Czechoslovakia,39501,Europe
+63,Dahomey,61,Africa
+64,Denmark,82274,Europe
+65,Djibouti,6,Africa
+66,Dominica,84,Central America
+67,Dominican Republic,1523,Central America
+68,Dutch East Indies,28,Central America
+69,East Timor,35,Asia
+70,Ecuador,14657,South America
+71,Egypt,4990,Arabic
+72,El Salvador,2048,Central America
+73,Equatorial Guinea,4,Africa
+74,Eritrea,42,Africa
+75,Estonia,8377,Europe
+76,Ethiopia,473,Africa
+77,Europe,458785,Europe
+78,Falkland Islands,2,UK
+79,Faroe Islands,666,Europe
+80,Fiji,104,Australia
+81,Finland,114138,Europe
+82,France,605622,France
+83,France & Benelux,2285,France
+84,French Guiana,70,France
+85,French Polynesia,146,France
+86,Gabon,95,Africa
+87,"Gambia, The",21,Africa
+88,Georgia,1985,Europe
+89,German Democratic Republic (GDR),16902,Germany
+90,Germany,1073414,Germany
+91,Germany & Switzerland,1345,Germany
+92,"Germany, Austria, & Switzerland",12768,Germany
+93,Ghana,1503,Africa
+94,Gibraltar,19,UK
+95,Greece,131826,Europe
+96,Greenland,263,Europe
+97,Grenada,38,Central America
+98,Guadeloupe,449,France
+99,Guam,38,Asia
+100,Guatemala,4230,Central America
+101,Guernsey,47,UK
+102,Guinea,197,Africa
+103,Guinea-Bissau,19,Africa
+104,Gulf Cooperation Council,517,Arabic
+105,Guyana,125,Central America
+106,Haiti,538,Central America
+107,Honduras,519,Central America
+108,Hong Kong,16374,Asia
+109,Hong Kong & Thailand,9,Asia
+110,Hungary,50160,Europe
+111,Iceland,9429,Europe
+112,India,40695,Asia
+113,Indonesia,32284,Asia
+114,Iran,2138,Arabic
+115,Iraq,172,Arabic
+116,Ireland,37745,Europe
+117,Israel,30329,Europe
+118,Italy,509789,Italy
+119,Ivory Coast,1138,Africa
+120,Jamaica,70274,Central America
+121,Japan,636149,Japan
+122,Jersey,52,UK
+123,Jordan,205,Arabic
+124,Kazakhstan,834,Asia
+125,Kenya,2694,Africa
+126,Korea (pre-1945),2,Asia
+127,Kosovo,338,Europe
+128,Kuwait,150,Arabic
+129,Kyrgyzstan,57,Arabic
+130,Laos,15,Asia
+131,Latvia,6253,Europe
+132,Lebanon,4348,Arabic
+133,Lesotho,23,Africa
+134,Liberia,20,Africa
+135,Libya,139,Arabic
+136,Liechtenstein,298,Europe
+137,Lithuania,14181,Europe
+138,Luxembourg,3314,Europe
+139,Macau,42,Asia
+140,Macedonia,3553,Europe
+141,Madagascar,1399,Africa
+142,Malawi,15,Africa
+143,Malaysia,21104,Asia
+144,Maldives,29,Africa
+145,Mali,179,Africa
+146,Malta,1506,Europe
+147,"Man, Isle of",161,UK
+148,Marshall Islands,62,Australia
+149,Martinique,251,France
+150,Mauritania,7,Arabic
+151,Mauritius,559,Africa
+152,Mayotte,4,Africa
+153,Mexico,110230,Central America
+154,"Micronesia, Federated States of",28,Australia
+155,Middle East,5813,Arabic
+156,"Moldova, Republic of",606,Europe
+157,Monaco,62,Europe
+158,Mongolia,263,Asia
+159,Montenegro,178,Europe
+160,Montserrat,4,Central America
+161,Morocco,1314,Arabic
+162,Mozambique,1266,Africa
+163,Namibia,47,Africa
+164,Nauru,1,Australia
+165,Nepal,241,Asia
+166,Netherlands,401523,Netherlands
+167,Netherlands Antilles,218,Central America
+168,New Caledonia,102,France
+169,New Zealand,65341,Australia
+170,Nicaragua,769,Central America
+171,Niger,20,Africa
+172,Nigeria,7243,Africa
+173,Niue,1,Australia
+174,Norfolk Island,3,Europe
+175,North & South America,29,South America
+176,North America (inc Mexico),2564,USA
+177,North Korea,94,Asia
+178,Northern Mariana Islands,4,Australia
+179,Norway,76660,Europe
+180,Oman,10,Arabic
+181,Pakistan,5570,Asia
+182,Palau,12,Australia
+183,Palestine,93,Arabic
+184,Panama,4262,Central America
+185,Papua New Guinea,125,Australia
+186,Paraguay,641,South America
+187,Peru,26823,South America
+188,Philippines,15329,Asia
+189,Pitcairn Islands,1,Australia
+190,Poland,122982,Europe
+191,Portugal,80377,Europe
+192,Protectorate of Bohemia and Moravia,20,Europe
+193,Puerto Rico,4134,Central America
+194,Qatar,23,Arabic
+195,Reunion,1185,France
+196,Rhodesia,1455,Africa
+197,Romania,31773,Europe
+198,Russia,267658,Russia
+199,Rwanda,11,Africa
+200,Saint Kitts and Nevis,27,Central America
+201,Saint Lucia,23,Central America
+202,Saint Pierre and Miquelon,1,Canada
+203,Saint Vincent and the Grenadines,16,Central America
+204,Samoa,8,Australia
+205,San Marino,63,Europe
+206,Sao Tome and Principe,6,Africa
+207,Saudi Arabia,1808,Arabic
+208,Scandinavia,21628,Europe
+209,Senegal,678,Africa
+210,Serbia,16332,Europe
+211,Serbia and Montenegro,2100,Europe
+212,Seychelles,131,Africa
+213,Sierra Leone,38,Africa
+214,Singapore,12645,Asia
+215,Singapore & Malaysia,538,Asia
+216,"Singapore, Malaysia & Hong Kong",2560,Asia
+217,"Singapore, Malaysia, Hong Kong & Thailand",58,Asia
+218,Sint Maarten,19,Central America
+219,Slovakia,11464,Europe
+220,Slovenia,10902,Europe
+221,Solomon Islands,3,Australia
+222,Somalia,26,Africa
+223,South Africa,60440,Africa
+224,South America,554,South America
+225,South East Asia,614,Asia
+226,South Korea,32465,Asia
+227,South Pacific,5,Australia
+228,South Vietnam,277,Asia
+229,South West Africa,3,Africa
+230,Southern Rhodesia,202,Africa
+231,Southern Sudan,2,Africa
+232,Spain,382425,Spain
+233,Sri Lanka,354,Asia
+234,Sudan,107,Africa
+235,Suriname,588,South America
+236,Swaziland,8,Africa
+237,Sweden,190131,Europe
+238,Switzerland,84253,Europe
+239,Syria,403,Arabic
+240,Taiwan,30923,Asia
+241,Tajikistan,9,Asia
+242,Tanzania,140,Africa
+243,Thailand,14566,Asia
+244,Togo,82,Africa
+245,Tokelau,1,Australia
+246,Tonga,4,Australia
+247,Trinidad & Tobago,2655,Central America
+248,Tunisia,1256,Arabic
+249,Turkey,40402,Arabic
+250,Turkmenistan,16,Asia
+251,Turks and Caicos Islands,4,Central America
+252,Uganda,195,Africa
+253,UK,1614988,UK
+254,UK & Europe,63198,Europe
+255,UK & France,717,Europe
+256,UK & Germany,69,Europe
+257,UK & Ireland,8932,UK
+258,UK & US,7096,USA
+259,"UK, Europe & Israel",53,Europe
+260,"UK, Europe & Japan",730,Europe
+261,"UK, Europe & US",14377,Europe
+262,Ukraine,49071,Europe
+263,United Arab Emirates,1239,Arabic
+264,Upper Volta,49,Africa
+265,Uruguay,9920,South America
+266,US,3087002,USA
+267,USA & Canada,43920,USA
+268,USA & Europe,12064,USA
+269,"USA, Canada & Europe",8563,USA
+270,"USA, Canada & UK",3579,USA
+271,USSR,74017,Russia
+272,Uzbekistan,680,Asia
+273,Vanuatu,7,Australia
+274,Vatican City,18,Europe
+275,Venezuela,35036,South America
+276,Vietnam,630,Asia
+277,Virgin Islands,219,Central America
+278,Wallis and Futuna,1,Australia
+279,West Bank,3,Arabic
+280,Worldwide,5044,Others
+281,Yemen,53,Arabic
+282,Yugoslavia,55901,Europe
+283,Zaire,1254,Africa
+284,Zambia,660,Africa
+285,Zimbabwe,2582,Africa
