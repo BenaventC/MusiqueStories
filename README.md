@@ -2,4 +2,5 @@
 
 Un recueil d'analyse des données Discogs
 
-* [Originaux et rééditions]()
+* Préparation des données (parser le dump)
+* [Originaux et rééditions](https://benaventc.github.io/MusicStories/script03reedition.html)
