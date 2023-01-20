@@ -1,0 +1,10 @@
+"0","foo<- style %>% 
+  group_by(style)%>%
+  summarise(n_release=n())%>% 
+  mutate(rank=rank(n_release)%>%arrange(rank)%>%
+    n_release_sum= cumsum(n_release))
+"
+"2","Error: unexpected '=' in:
+""  mutate(rank=rank(n_release)%>%arrange(rank)%>%
+    n_release_sum=""
+"

@@ -1,0 +1,153 @@
+---
+title: "Musiques : histoire de genres"
+title-block-banner: "images/ColorWheel-Vinyl_A-Side.png"
+subtitle: "Originaux et rééditions, une dynamique de cycle de vie ? "
+author: "Christophe Benavent"
+institute: "Paris Dauphine - PSL"
+date : "today"
+toc: true
+number-sections: true
+number-depth: 2
+format: html
+editor: visual
+execute:
+  echo: true
+  warning: false
+  message: false
+fig-align: "center"
+code-fold: true
+---
+
+# Introduction
+
+```{r 0O}
+#tools
+
+#packages
+library(tidyverse)
+library(ggrepel)
+library(word2vec)
+library(doc2vec)
+library(fastcluster) #pour aller plus vite en hc
+library(Rtsne)
+library(scales)
+library(zoo)
+
+# pour ggplot
+
+theme_set(theme_minimal())
+
+breaks = c(1900, 1910, 1920,1930,1940,1950,
+                                1960,1970,1980,1990,2000,2010,2020)
+#  les couleurs des genres . Y-a-il une conventions ?
+col_genre<-c("blue4","coral4","skyblue","purple" , "darkturquoise","darkgreen",
+                    "orange1","orange3","dodgerblue4","darkred","black","deeppink2","limegreen","red3","grey")
+                    
+col_format=c("brown4",  "skyblue1", "skyblue2", "skyblue3","grey","cyan",  "grey30")
+
+
+col_pays= c("black", "green3","green1","lightblue1", "yellow", "lightblue2", "orange1", "lightblue4", "dodgerblue3", "dodgerblue1", "dodgerblue2","green2","lightblue3", "white", "green4", "orange2", "orange3", "blue3", "blue4")
+
+
+```
+
+# Préparation des données
+
+Dans cette étude nous nous concentrons sur les styles.
+
+Les fichiers sont gros
+
+```{r 01}
+t1<-Sys.time()
+release<-read.csv("./dataarchives/release_work.csv")%>%
+  select(-X)
+style<-read.csv("./dataarchives/release_style.csv")%>%
+  rename(id=release_id)
+
+
+t2<-Sys.time()
+t=t2-t1
+
+```
+
+# Un premier aperçu
+
+## Combien de styles par release ?
+
+```{r 02}
+foo<- style %>% 
+  group_by(id)%>%
+  summarise(n_style=n())
+
+ggplot(foo,aes(x=n_style))+  labs(x="Nombre de styles", y="Nombre d'éditions")+
+  geom_histogram(binwidth = 1, fill="skyblue3")+
+  scale_fill_manual(values=c("skyblue3", "skyblue1")) +
+#   scale_x_continuous(breaks = breaks, limits = c(1940, 2020))+
+   scale_y_continuous(label=comma )+
+scale_x_continuous(label=comma , breaks =c(1,2,3,4,5,6,7,8,9,10),limits = c(0,10))
+
+ggsave(filename="./images/genre10.jpeg", plot=last_plot(), width = 27, height = 18, units = "cm")
+
+foo2<- release%>%
+  left_join(foo)%>%
+  group_by(year,version)%>%
+  summarise(n_style_m=mean(n_style, na.rm=TRUE),
+            n_style_d=sd(n_style, na.rm=TRUE))
+  
+
+
+ggplot(foo2,aes(x=year,y=n_style_m,group=version))+  
+  labs(x=NULL, y="Nombre de styles")+
+  geom_ribbon(aes(ymin = n_style_m - n_style_d/20, 
+                  ymax = n_style_m + n_style_d/20, 
+                  fill=version), alpha=.8)+
+  scale_fill_manual(values=c("skyblue3", "skyblue1")) +
+#   scale_x_continuous(breaks = breaks, limits = c(1940, 2020))+
+   scale_y_continuous( )+
+scale_x_continuous( breaks =breaks,limits = c(1940,2020))
+
+ggsave(filename="./images/genre11.jpeg", plot=last_plot(), width = 27, height = 18, units = "cm")
+
+
+```
+
+## Combien de releases par style ?
+
+```{r 03}
+foo<- style %>% 
+  group_by(style)%>%
+  summarise(n_release=n())%>%
+  arrange(desc(n_release))%>% 
+    mutate(rank=rank(n_release, ties.method='random'),
+           sum=cumsum(n_release))
+           
+ggplot(foo,aes(x=-rank,y=sum))+  
+  labs(x="Nombre de styles", y="Nombre d'éditions")+
+  geom_area(fill="skyblue3")+
+   scale_y_continuous(label=comma )+
+scale_x_continuous()
+
+ggsave(filename="./images/genre10.jpeg", plot=last_plot(), width = 27, height = 18, units = "cm")
+
+foo2<- release%>%
+  left_join(foo)%>%
+  group_by(year,version)%>%
+  summarise(n_style_m=mean(n_style, na.rm=TRUE),
+            n_style_d=sd(n_style, na.rm=TRUE))
+  
+
+
+ggplot(foo2,aes(x=year,y=n_style_m,group=version))+  
+  labs(x=NULL, y="Nombre de styles")+
+  geom_ribbon(aes(ymin = n_style_m - n_style_d/20, 
+                  ymax = n_style_m + n_style_d/20, 
+                  fill=version), alpha=.8)+
+  scale_fill_manual(values=c("skyblue3", "skyblue1")) +
+#   scale_x_continuous(breaks = breaks, limits = c(1940, 2020))+
+   scale_y_continuous( )+
+scale_x_continuous(limits = c(1,603))
+
+ggsave(filename="./images/genre11.jpeg", plot=last_plot(), width = 27, height = 18, units = "cm")
+
+
+```
