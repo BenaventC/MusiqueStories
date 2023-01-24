@@ -1,1 +1,1 @@
-/dataarchives/*.*
+./dataarchives/*.csv

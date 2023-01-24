@@ -1,0 +1,92 @@
+"0","#tools"
+"0",""
+"0","#packages"
+"0","library(tidyverse)"
+"2","Warning: le package ‘tidyverse’ a été compilé avec la version R 4.0.5"
+"2","Registered S3 methods overwritten by 'dbplyr':
+  method         from
+  print.tbl_lazy     
+  print.tbl_sql      
+"
+"2","[30m-- [1mAttaching packages[22m ------------------------------------------------------------------------------------------------- tidyverse 1.3.1 --[39m
+"
+"2","[30m[32mv[30m [34mggplot2[30m 3.3.6     [32mv[30m [34mpurrr  [30m 0.3.4
+[32mv[30m [34mtibble [30m 3.1.7     [32mv[30m [34mdplyr  [30m 1.0.9
+[32mv[30m [34mtidyr  [30m 1.2.0     [32mv[30m [34mstringr[30m 1.4.0
+[32mv[30m [34mreadr  [30m 2.0.0     [32mv[30m [34mforcats[30m 0.5.1[39m
+"
+"2","Warning: le package ‘tidyr’ a été compilé avec la version R 4.0.5"
+"2","Warning: le package ‘readr’ a été compilé avec la version R 4.0.5"
+"2","Warning: le package ‘forcats’ a été compilé avec la version R 4.0.5"
+"2","[30m-- [1mConflicts[22m ---------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+[31mx[30m [34mdplyr[30m::[32mfilter()[30m masks [34mstats[30m::filter()
+[31mx[30m [34mdplyr[30m::[32mlag()[30m    masks [34mstats[30m::lag()[39m
+"
+"0","library(ggrepel)"
+"2","Warning: le package ‘ggrepel’ a été compilé avec la version R 4.0.5"
+"0","library(word2vec)"
+"2","Warning: le package ‘word2vec’ a été compilé avec la version R 4.0.5"
+"0","library(doc2vec)"
+"2","Warning: le package ‘doc2vec’ a été compilé avec la version R 4.0.5"
+"0","library(fastcluster) #pour aller plus vite en hc"
+"2","Warning: le package ‘fastcluster’ a été compilé avec la version R 4.0.5"
+"2","
+Attachement du package : ‘fastcluster’
+
+"
+"2","The following object is masked from ‘package:stats’:
+
+    hclust
+
+"
+"0","library(Rtsne)"
+"2","Warning: le package ‘Rtsne’ a été compilé avec la version R 4.0.5"
+"0","library(scales)"
+"2","Warning: le package ‘scales’ a été compilé avec la version R 4.0.5"
+"2","
+Attachement du package : ‘scales’
+
+"
+"2","The following object is masked from ‘package:purrr’:
+
+    discard
+
+"
+"2","The following object is masked from ‘package:readr’:
+
+    col_factor
+
+"
+"0","library(zoo)"
+"2","Warning: le package ‘zoo’ a été compilé avec la version R 4.0.5"
+"2","
+Attachement du package : ‘zoo’
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    as.Date, as.Date.numeric
+
+"
+"0","library(jtools)"
+"2","Warning: le package ‘jtools’ a été compilé avec la version R 4.0.5"
+"0","# pour ggplot"
+"0",""
+"0",""
+"0",""
+"0","breaks = c(1900, 1910, 1920,1930,1940,1950,"
+"0","                                1960,1970,1980,1990,2000,2010,2020)"
+"0",""
+"0",""
+"0","#  les couleurs des genres . Y-a-il une conventions ?"
+"0","col_genre<-c(""blue4"",""coral4"",""skyblue"",""purple"" , ""darkturquoise"",""darkgreen"","
+"0","                    ""orange1"",""orange3"",""dodgerblue4"",""darkred"",""black"",""deeppink2"",""limegreen"",""red3"",""grey"")"
+"0","                    "
+"0","col_format=c(""brown4"",  ""skyblue1"", ""skyblue2"", ""skyblue3"",""grey"",""cyan"",  ""grey30"")"
+"0",""
+"0",""
+"0","col_pays= c(""black"", ""green3"",""green1"",""lightblue1"", ""yellow"", ""lightblue2"", ""orange1"", ""lightblue4"", ""dodgerblue3"", ""dodgerblue1"", ""dodgerblue2"",""green2"",""lightblue3"", ""white"", ""green4"", ""orange2"", ""orange3"", ""blue3"", ""blue4"")"
+"0",""
+"0",""
+"0","theme_set(theme_minimal())"
+"0",""

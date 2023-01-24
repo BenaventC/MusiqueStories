@@ -1,0 +1,6 @@
+"0","text1<-rbind(genre,style) %>%
+  left_join(release)%>%
+  filter(version==""Original"") %>%
+  select(id,title, pays2, date, style,category)
+"
+"2","Joining, by = ""id"""
