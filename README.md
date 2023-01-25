@@ -5,7 +5,7 @@ Un recueil d'analyse des données Discogs.  Une question sur l'évolution des st
 C'est un work in progress les éléments sont ajoutés à mesure des analyses. 
 
 * parsing xml du dump discog. 
-* [Oeuvres originales et rééditions] : il s'agit d'examiner la production en distinguant les productions originales des rééditions.  
+* [Oeuvres originales et rééditions](https://benaventc.github.io/MusiqueStories/script03reedition.html) : il s'agit d'examiner la production en distinguant les productions originales des rééditions.  
 * [Styles embeddings](https://benaventc.github.io/MusiqueStories/script04style.html) : pour mieux comprendre l'espace des styles et sa structuration. 
 * [Time Styles embeddings] () : pour mieux comprendre l'espace des styles et sa structuration. 
 
