@@ -1,0 +1,7 @@
+"0","foo<- release%>% "
+"0","  select(id,date,version, 9:23)%>%"
+"0","  pivot_longer(-c(id,date,version), names_to=""genre"", values_to = ""value"")%>%"
+"0","  group_by(date,version, genre)%>%"
+"0","  summarise(n=sum(value))"
+"2","Error: cannot allocate vector of size 752.5 Mb
+"
