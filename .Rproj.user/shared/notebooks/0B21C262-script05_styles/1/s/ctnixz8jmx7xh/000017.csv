@@ -1,0 +1,2 @@
+"0",""
+"0","ggsave(filename=""cluster_word.jpeg"", plot=last_plot(), width = 27, height = 18, units = ""cm"")"

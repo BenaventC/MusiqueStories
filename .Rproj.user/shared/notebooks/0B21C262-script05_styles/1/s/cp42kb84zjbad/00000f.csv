@@ -1,0 +1,40 @@
+"0","#titre<-UD %>%group_by"
+"0","x      <- data.frame(doc_id           = text2$id, "
+"0","                     text             = text2$description, "
+"0","                     stringsAsFactors = FALSE)"
+"0","#x$text <- txt_clean_word2vec(x$text, tolower=TRUE)"
+"0","emb <- as.data.frame(doc2vec(model, x$text,  split = "" "",type = ""embedding""))%>%"
+"0","  drop_na()"
+"0",""
+"0",""
+"0","release_emb<-cbind(text2,emb)%>%left_join(release)"
+"2","Joining, by = ""id"""
+"0","rm(text1)"
+"0","rm(style)"
+"0","rm(text2)"
+"0","rm(release)"
+"0","rm(genre)"
+"0","rm(emb)"
+"0","foo<- release_emb %>% "
+"0","  select(id, year, 3:102) %>% "
+"0","  group_by(year)%>%"
+"0","  summarise(across(2:101, ~ mean(.x, na.rm = TRUE)))%>%"
+"0","filter(year>1939 & year<2021)%>%column_to_rownames(var=""year"")"
+"0",""
+"0","library(factoextra)"
+"2","Warning: le package ‘factoextra’ a été compilé avec la version R 4.0.2"
+"2","Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+"
+"0","library(FactoMineR)"
+"2","Warning: le package ‘FactoMineR’ a été compilé avec la version R 4.0.3"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"0","res.pca<-PCA(foo, ncp = 5, graph = TRUE)"

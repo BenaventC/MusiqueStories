@@ -1,0 +1,7 @@
+"0",""
+"0","foo1<- embedding %>%"
+"0","  rownames_to_column(var=""style"") %>% "
+"0","  pivot_longer"
+"2","Error in rownames_to_column(., var = ""style"") : 
+  is.data.frame(df) is not TRUE
+"

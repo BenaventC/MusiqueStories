@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Christophe Benavent">
-<meta name="dcterms.date" content="2023-01-28">
+<meta name="dcterms.date" content="2023-01-29">
 
 <title>Musiques : Musiques : histoire de genres</title>
 <style>
@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 28, 2023</p>
+        <p class="date">January 29, 2023</p>
       </div>
     </div>
     
@@ -156,7 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#la-pop" id="toc-la-pop" class="nav-link" data-scroll-target="#la-pop"><span class="toc-section-number">3.4</span>  La Pop</a></li>
   <li><a href="#le-classique" id="toc-le-classique" class="nav-link" data-scroll-target="#le-classique"><span class="toc-section-number">3.5</span>  Le Classique</a></li>
   </ul></li>
-  <li><a href="#analyse-multivariée-temporelle" id="toc-analyse-multivariée-temporelle" class="nav-link" data-scroll-target="#analyse-multivariée-temporelle"><span class="toc-section-number">4</span>  Analyse multivariée temporelle</a></li>
+  <li><a href="#analyse-multivariée-temporelle" id="toc-analyse-multivariée-temporelle" class="nav-link" data-scroll-target="#analyse-multivariée-temporelle"><span class="toc-section-number">4</span>  Analyse multivariée temporelle</a>
+  <ul class="collapse">
+  <li><a href="#analyse-procustééenne" id="toc-analyse-procustééenne" class="nav-link" data-scroll-target="#analyse-procustééenne"><span class="toc-section-number">4.1</span>  Analyse procustééenne</a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="toc-section-number">5</span>  Conclusion</a></li>
   </ul>
 </nav>
@@ -193,21 +196,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rtsne)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># pour ggplot</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>breaks <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1900</span>, <span class="dv">1910</span>, <span class="dv">1920</span>,<span class="dv">1930</span>,<span class="dv">1940</span>,<span class="dv">1950</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                                <span class="dv">1960</span>,<span class="dv">1970</span>,<span class="dv">1980</span>,<span class="dv">1990</span>,<span class="dv">2000</span>,<span class="dv">2010</span>,<span class="dv">2020</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>breaks2 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1945</span>, <span class="dv">1950</span>, <span class="dv">1955</span>,<span class="dv">1960</span>,<span class="dv">1965</span>,<span class="dv">1970</span>,<span class="dv">1975</span>,<span class="dv">1980</span>,<span class="dv">1985</span>,<span class="dv">1990</span>,<span class="dv">1995</span>,<span class="dv">2000</span>,<span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>,<span class="dv">2020</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#  les couleurs des genres . Y-a-il une conventions ?</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>col_genre<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"blue4"</span>,<span class="st">"coral4"</span>,<span class="st">"skyblue"</span>,<span class="st">"purple"</span> , <span class="st">"darkturquoise"</span>,<span class="st">"darkgreen"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"orange1"</span>,<span class="st">"orange3"</span>,<span class="st">"dodgerblue4"</span>,<span class="st">"darkred"</span>,<span class="st">"black"</span>,<span class="st">"deeppink2"</span>,<span class="st">"limegreen"</span>,<span class="st">"red3"</span>,<span class="st">"grey"</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                    </span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>col_format<span class="ot">=</span><span class="fu">c</span>(<span class="st">"brown4"</span>,  <span class="st">"skyblue1"</span>, <span class="st">"skyblue2"</span>, <span class="st">"skyblue3"</span>,<span class="st">"grey"</span>,<span class="st">"cyan"</span>,  <span class="st">"grey30"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smacof)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># pour ggplot</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>breaks <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1900</span>, <span class="dv">1910</span>, <span class="dv">1920</span>,<span class="dv">1930</span>,<span class="dv">1940</span>,<span class="dv">1950</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                                <span class="dv">1960</span>,<span class="dv">1970</span>,<span class="dv">1980</span>,<span class="dv">1990</span>,<span class="dv">2000</span>,<span class="dv">2010</span>,<span class="dv">2020</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>breaks2 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1945</span>, <span class="dv">1950</span>, <span class="dv">1955</span>,<span class="dv">1960</span>,<span class="dv">1965</span>,<span class="dv">1970</span>,<span class="dv">1975</span>,<span class="dv">1980</span>,<span class="dv">1985</span>,<span class="dv">1990</span>,<span class="dv">1995</span>,<span class="dv">2000</span>,<span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>,<span class="dv">2020</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#  les couleurs des genres . Y-a-il une conventions ?</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>col_genre<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"blue4"</span>,<span class="st">"coral4"</span>,<span class="st">"skyblue"</span>,<span class="st">"purple"</span> , <span class="st">"darkturquoise"</span>,<span class="st">"darkgreen"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"orange1"</span>,<span class="st">"orange3"</span>,<span class="st">"dodgerblue4"</span>,<span class="st">"darkred"</span>,<span class="st">"black"</span>,<span class="st">"deeppink2"</span>,<span class="st">"limegreen"</span>,<span class="st">"red3"</span>,<span class="st">"grey"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>col_format<span class="ot">=</span><span class="fu">c</span>(<span class="st">"brown4"</span>,  <span class="st">"skyblue1"</span>, <span class="st">"skyblue2"</span>, <span class="st">"skyblue3"</span>,<span class="st">"grey"</span>,<span class="st">"cyan"</span>,  <span class="st">"grey30"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
@@ -356,74 +360,371 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="analyse-multivariée-temporelle" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Analyse multivariée temporelle</h1>
-<p>work in progress à partir d’ici.</p>
-<p>Un mds avec une fenêtre glissante</p>
+<p>Puisque nous disposons de ces données, genre par genre, une approche plus configurationnelle peut être envisagée pour mesurer les dérives dans le systèmes de relations.</p>
+<p>Pour chaque année on dispose d’un tableau qui concatène les genres cibles, et les genres attracteurs. On souhaite présenter les similarités entre les genres cible à partir des profils de genre attracteurs. Autrement dit deux groupes cibles seront similaires s’ils sont co-tagués par les mêmes genres. Les valeurs représentent l’attraction du style de la ligne i par celui de la colonne j ( la proportion de i qui est aussi taguée j ), un genre s’attire lui-même , on lui donne une valeur de 1.</p>
+<p>examinons ceci en détail, on examine le cas de 2020.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>foo1<span class="ot">&lt;-</span>foo <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">target=</span><span class="dv">5</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">target=</span><span class="fu">str_remove</span>(target, <span class="st">"target== "</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>p)<span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d=</span>d)<span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="fu">c</span>(year,target), <span class="at">names_from =</span> <span class="st">"genre"</span>, <span class="at">values_from =</span> <span class="st">"d"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">1</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">2000</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>foo2<span class="ot">&lt;-</span>foo1 <span class="sc">%&gt;%</span> </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span>i)<span class="sc">%&gt;%</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="at">var=</span><span class="st">"target"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>foo2[<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 BrassMilitary    Childrens   Classical Electronic
+BrassMilitary     1.0000000000 0.0285714286 0.142857143 0.08571429
+Childrens         0.0057803468 1.0000000000 0.069364162 0.06936416
+Classical         0.0042517007 0.0102040816 1.000000000 0.07227891
+Electronic        0.0001831837 0.0007327349 0.005190206 1.00000000
+FolkWorldCountry  0.0060913706 0.0071065990 0.029103215 0.07241963
+FunkSoul          0.0006939625 0.0013879251 0.006245663 0.24427481
+                 FolkWorldCountry
+BrassMilitary          0.51428571
+Childrens              0.12138728
+Classical              0.07312925
+Electronic             0.01306711
+FolkWorldCountry       1.00000000
+FunkSoul               0.04857738</code></pre>
+</div>
+</div>
+<p>On notera au passage que la somme de chaque ligne ( - 1 si on enlève l’auto-attraction) mesure la tendance d’un style à être complété par d’autres étiquettes, en quelque sorte sa dépendance aux autres genres pour être qualifié. En colonne c’est la capacité à attirer d’autres styles( -1) et donc à les qualifier et à exercer une influence.</p>
+<p>Profitons en pour en faire la synthèse :</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dependance<span class="ot">&lt;-</span> foo2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">dependance=</span> <span class="fu">rowSums</span>(.)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dependance) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"genre"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>influence<span class="ot">&lt;-</span> foo2 <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarise_all</span>(<span class="fu">funs</span>(sum))<span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>()<span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">influence=</span><span class="dv">1</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">influence=</span>influence<span class="dv">-1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"genre"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>clout<span class="ot">&lt;-</span> <span class="fu">merge</span>(dependance, influence)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(clout, <span class="fu">aes</span>(<span class="at">x=</span> dependance, <span class="at">y=</span>influence))<span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span>genre))<span class="sc">+</span> </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>,<span class="fl">1.7</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"dépendance"</span>, <span class="at">y=</span><span class="st">" Influence"</span>)<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15c-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Après cette analyse synthétique, on peut suhaiter s’engager dans une analyse plus holistique. En utilisant une analyse de type MDS.</p>
+<p>Les distance entre les genres cibles, ceux dont on veut connaitre à tel point ils sont précisés par les autres genre, peut être calculé par une distance de canberra qui est une variation de la distance de manhantan mais se prete bien à nos variable qui ne peuvent prendre de valeurs qu’entre 0 et 1. 1 Signifie que pour les unités taguée X sont aussi taguée Y. X est le max de Y. La similarité absolue.</p>
+<p>Pour le modèle MDS, on choisit un modèle ordinal, plus robuste. On en donne la configuration, mais aussi l’ajustement.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>foo3<span class="ot">&lt;-</span>foo2<span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">"genre"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(genre)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>mds <span class="ot">&lt;-</span> foo2 <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist</span>(<span class="at">method=</span><span class="st">"canberra"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mds</span>( <span class="at">type =</span> <span class="st">"ordinal"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>mdscoord<span class="ot">&lt;-</span>mds<span class="sc">$</span>conf <span class="sc">%&gt;%</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(foo3)<span class="sc">%&gt;%</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span> i)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>foo4<span class="ot">&lt;-</span><span class="fu">rbind</span>(foo4,mdscoord)  <span class="co">#cumul fichiers</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mdscoord, <span class="fu">aes</span>(<span class="at">x=</span>D1, <span class="at">y=</span>D2, <span class="at">label=</span> genre))<span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span>genre))<span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="fu">paste</span>(i))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15d-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mds, <span class="at">plot.type =</span> <span class="st">"Shepard"</span>, <span class="at">main =</span> <span class="st">"Shepard Diagram (Ordinal Transformation)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15d-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>ON work in progress à partir d’ici.</p>
+<p>Un mds avec une fenêtre glissante mais d’abord de manière séquentielle.</p>
 <p>Traiter la question de l’asymétrie</p>
 <p>on anime ensuite</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mise enforme des données</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>foo1<span class="ot">&lt;-</span>foo <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">target=</span><span class="dv">5</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">target=</span><span class="fu">str_remove</span>(target, <span class="st">"target== "</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>p)<span class="sc">%&gt;%</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">d=</span><span class="dv">1</span><span class="sc">-</span>d)<span class="sc">%&gt;%</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="fu">c</span>(year,target), <span class="at">names_from =</span> <span class="st">"genre"</span>, <span class="at">values_from =</span> <span class="st">"d"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#attention avant 1978 il n'y a pas de hip hop</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Vector with Columns</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>columns <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"V1"</span>,<span class="st">"V2"</span>,<span class="st">"genre"</span>, <span class="st">"year"</span>) </span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a Empty DataFrame with 0 rows and n columns</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>foo4 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">0</span>, <span class="at">ncol =</span> <span class="fu">length</span>(columns))) </span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign column names</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(foo4) <span class="ot">=</span> columns</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1982</span><span class="sc">:</span><span class="dv">2021</span>){</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>foo2<span class="ot">&lt;-</span>foo1 <span class="sc">%&gt;%</span> </span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span>i)<span class="sc">%&gt;%</span> </span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="at">var=</span><span class="st">"target"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year)</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>foo3<span class="ot">&lt;-</span>foo2<span class="sc">%&gt;%</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">"genre"</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(genre)</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>mds <span class="ot">&lt;-</span> foo2 <span class="sc">%&gt;%</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.dist</span>() <span class="sc">%&gt;%</span>          </span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cmdscale</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(foo3)<span class="sc">%&gt;%</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span> i)</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>foo4<span class="ot">&lt;-</span><span class="fu">rbind</span>(foo4,mds)</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mds, <span class="fu">aes</span>(<span class="at">x=</span>V1, <span class="at">y=</span>V2, <span class="at">label=</span> genre))<span class="sc">+</span></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span>genre))</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smacof)</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="do">## simple example</span></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co">#res &lt;- driftVectors(foo2, type = "ratio")</span></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co">#plot(res, adjust = 0.5)    ## shorten drift vectors </span></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>gan<span class="ot">&lt;-</span><span class="fu">ggplot</span>(foo4, <span class="fu">aes</span>(V1, V2, <span class="at">label =</span> genre)) <span class="sc">+</span></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">color=</span>genre)) <span class="sc">+</span></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span>col_genre)<span class="sc">+</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Here comes the gganimate specific bits</span></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Year: {frame_time}'</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y=</span><span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shadow_wake</span>(<span class="at">wake_length =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">"filenamehere.gif"</span>, gan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mise en forme des données</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#attention avant 1978 il n'y a pas de hip hop</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#intitiation</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Vector with Columns</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>columns <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"V1"</span>,<span class="st">"V2"</span>,<span class="st">"genre"</span>, <span class="st">"year"</span>) </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a Empty DataFrame with 0 rows and n columns</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>foo4 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">0</span>, <span class="at">ncol =</span> <span class="fu">length</span>(columns))) </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign column names</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(foo4) <span class="ot">=</span> columns</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#loop</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1982</span><span class="sc">:</span><span class="dv">2021</span>){</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#i=2020  </span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>foo2<span class="ot">&lt;-</span>foo1 <span class="sc">%&gt;%</span> </span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span>i)<span class="sc">%&gt;%</span> </span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="at">var=</span><span class="st">"target"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>foo3<span class="ot">&lt;-</span>foo2<span class="sc">%&gt;%</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">"genre"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(genre)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>mds <span class="ot">&lt;-</span> foo2 <span class="sc">%&gt;%</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist</span>(<span class="at">method=</span><span class="st">"canberra"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mds</span>( <span class="at">type =</span> <span class="st">"ordinal"</span>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>mdscoord<span class="ot">&lt;-</span>mds<span class="sc">$</span>conf <span class="sc">%&gt;%</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(foo3)<span class="sc">%&gt;%</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span> i)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>foo4<span class="ot">&lt;-</span><span class="fu">rbind</span>(foo4,mdscoord)  <span class="co">#cumul fichiers</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mdscoord, <span class="fu">aes</span>(<span class="at">x=</span>D1, <span class="at">y=</span>D2, <span class="at">label=</span> genre))<span class="sc">+</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span>genre))<span class="sc">+</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="fu">paste</span>(i))</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mds, <span class="at">plot.type =</span> <span class="st">"Shepard"</span>, <span class="at">main =</span> <span class="st">"Shepard Diagram (Ordinal Transformation)"</span>)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-8.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-9.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-10.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-11.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-12.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-13.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-14.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-15.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-16.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-17.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-18.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-19.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-20.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-21.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-22.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-23.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-24.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-25.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-26.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-27.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-28.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-29.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-30.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-31.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-32.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-33.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-34.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-35.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-36.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-37.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-38.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-39.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-40.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#carte animée</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>gan<span class="ot">&lt;-</span><span class="fu">ggplot</span>(foo4, <span class="fu">aes</span>(D1, D2, <span class="at">label =</span> genre)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">color=</span>genre)) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span>col_genre)<span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Here comes the gganimate specific bits</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Year: {frame_time}'</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y=</span><span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shadow_wake</span>(<span class="at">wake_length =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>)<span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">'cubic-in-out'</span>) </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(gan,  <span class="at">duration =</span> <span class="dv">76</span>,  <span class="at">fps  =</span>  <span class="dv">5</span>, <span class="at">renderer =</span> <span class="fu">gifski_renderer</span>(<span class="at">loop =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="script04_crossgenre_files/figure-html/15-1.gif" class="img-fluid"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">"./images/mds_dyn.gif"</span>,  <span class="at">animation =</span> <span class="fu">last_animation</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="analyse-procustééenne" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="analyse-procustééenne"><span class="header-section-number">4.1</span> Analyse procustééenne</h2>
+<p>Comparer les solutions dans le temps est rendu difficile par le fait que les espaces ne sont pas équivalents, même si les configuations sont identiques. L’analyse procustééenne vise à ramené la configuration d’une cible à celle d’un test par des opérations de dilatation, de translations, et de rotations. L’idée est amener deux configurations, deux formes, dans l’espace le plus proche.</p>
+<p>Pour l’anecdote et l’exemple, c’est par ce type de méthode qu’on compare des crânes de périodes ou de région différentes en anthropologie, pour apprécier leurs différences dans un même repère. On comprend que la méthode permet de se concentrer sur les différences entre la configuration test et la configuration cible indépendamment des espaces dans lesquels ils ont été projetés. Ce sont les écarts qui deviennent intéressants car ils traduisent des dérives de signification.</p>
+<p>La stratégie d’analyse va donc êtres de faire cette comparaison, de manière glissante, en calculant la dérive de la configuration à t, par rapport à la configuration ajustée pour la comparaison à t+1.</p>
+<p>’idée va être d’opérer cette transformation de manière glissante en prenant pour test, la configuration précédente, telle qu’elle a été ramenée à la cible.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Vector with Columns</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>columns <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"D1"</span>,<span class="st">"D2"</span>,<span class="st">"D1b"</span>, <span class="st">"D2B"</span>, <span class="st">"year"</span>) </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a Empty DataFrame with 0 rows and n columns</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">0</span>, <span class="at">ncol =</span> <span class="fu">length</span>(columns))) </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign column names</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(foo) <span class="ot">=</span> columns</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># print DataFrame</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(foo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] D1   D2   D1b  D2B  year
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## simple example</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1980</span><span class="sc">:</span><span class="dv">2020</span>){</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  foo2a<span class="ot">&lt;-</span>foo1 <span class="sc">%&gt;%</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span>i)<span class="sc">%&gt;%</span> </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="at">var=</span><span class="st">"target"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>foo2b<span class="ot">&lt;-</span>foo1 <span class="sc">%&gt;%</span> </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span>i<span class="sc">+</span><span class="dv">1</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="at">var=</span><span class="st">"target"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>resa<span class="ot">&lt;-</span> mds <span class="ot">&lt;-</span> foo2a <span class="sc">%&gt;%</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist</span>()  <span class="sc">%&gt;%</span>          </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mds</span>( <span class="at">type =</span> <span class="st">"ordinal"</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>resb<span class="ot">&lt;-</span> mds <span class="ot">&lt;-</span> foo2b <span class="sc">%&gt;%</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dist</span>()  <span class="sc">%&gt;%</span>          </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mds</span>( <span class="at">type =</span> <span class="st">"ordinal"</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span><span class="fu">Procrustes</span>(resa<span class="sc">$</span>conf, resb<span class="sc">$</span>conf)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>conf_a<span class="ot">&lt;-</span>fit<span class="sc">$</span>X <span class="sc">%&gt;%</span> as.data.frame</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>conf_b<span class="ot">&lt;-</span>fit<span class="sc">$</span>Yhat<span class="sc">%&gt;%</span> as.data.frame</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>Procust<span class="ot">&lt;-</span><span class="fu">cbind</span>(conf_a,conf_b) <span class="sc">%&gt;%</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">D1b=</span><span class="dv">3</span>,<span class="at">D2b=</span><span class="dv">4</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span>i)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>foo<span class="ot">&lt;-</span> <span class="fu">rbind</span>(foo,Procust)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Procust, <span class="fu">aes</span>(<span class="at">x=</span>D1,<span class="at">y=</span>D2))<span class="sc">+</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">row.names</span>(Procust)))<span class="sc">+</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>D1, <span class="at">y=</span>D2, <span class="at">xend=</span>D1b, <span class="at">yend=</span>D2b), </span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>               <span class="at">arrow=</span><span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">"cm"</span>)), <span class="at">size=</span>.<span class="dv">5</span>, </span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">"grey"</span>)</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Le résultat :</p>
@@ -434,9 +735,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 </section>
+</section>
 <section id="conclusion" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Conclusion</h1>
 <p>On ne présente pas tous les cas, le lecteur curieux ira chercher les images des autres genres <a href="">ici</a></p>
+<p>d’autres méthodes ? . CA, pca, unfoldinf vectr drift ?</p>
 <p>C’est une première approche qu’on va systématiser avec les styles.</p>
 <p>une pca et une pta ? https://rfrelat.github.io/Multivariate2D3D.html</p>
 </section>
