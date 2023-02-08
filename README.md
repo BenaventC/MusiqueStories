@@ -1,8 +1,11 @@
 # L'évolution des styles de la musique enregistrée
 
-Un recueil d'analyse des données Discogs qui porte sur 80 ans, concerne 7 millions d'oeuvres originales, 2 millions d'artyiste, 700 000 labels, des dizaines de milliers de morceaux.  Une question générale sur l'évolution des styles musiques et de la structure de cet espace. Des interrogations sur le moteur : le jeu de la compétition et de la légitimité.
+Un recueil d'analyse des données Discogs qui porte sur 80 ans, concerne 7 millions d'oeuvres originales, 2 millions d'artiste, 700 000 labels, des dizaines de millions de morceaux. 
+
+Une question générale sur l'évolution des styles musiques et de la structure de cet espace. Des interrogations sur le moteur : le jeu de la compétition et de la légitimité.
 
 C'est un "work in progress" les éléments sont ajoutés à mesure des analyses. 
+
 * [Introduction](https://benaventc.github.io/MusiqueStories/script00_cadrage_biblio.html)
 * [Données Discogs](https://benaventc.github.io/MusiqueStories/script01_discogsdata.html))
 * parsing xml du dump discog et API
