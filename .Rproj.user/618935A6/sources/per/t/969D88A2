@@ -1,0 +1,31 @@
+{
+    "id": "969D88A2",
+    "path": "~/_AtelierR/_discogs/MusiqueStories/script05_styles.qmd",
+    "project_path": "script05_styles.qmd",
+    "type": "quarto_markdown",
+    "hash": "2925934707",
+    "contents": "",
+    "dirty": false,
+    "created": 1675794869300.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "6:0",
+        "cursorPosition": "364,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1675852133,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1675852133317,
+    "read_only": false,
+    "read_only_alternatives": []
+}

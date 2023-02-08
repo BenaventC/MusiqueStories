@@ -1,0 +1,172 @@
+---
+title: "Musiques : histoire de genres"
+title-block-banner: "images/ColorWheel-Vinyl_A-Side.png"
+subtitle: "Les transitions de styles"
+author: "Christophe Benavent"
+institute: "Paris Dauphine - PSL"
+date : "today"
+toc: true
+number-sections: true
+number-depth: 2
+format: html
+editor: visual
+execute:
+  echo: true
+  warning: false
+  message: false
+fig-align: "center"
+code-fold: true
+---
+
+# Tools
+
+
+```{r 0O}
+#tools
+
+#packages
+library(tidyverse)
+library(word2vec)
+library(doc2vec)
+library(fastcluster) #pour aller plus vite en hc
+library(Rtsne)
+#library(zoo)
+
+
+# pour ggplot
+
+library(ggrepel)
+library(scales)
+library(zoo)
+library(jtools)
+
+
+breaks = c(1900, 1910, 1920,1930,1940,1950,
+                                1960,1970,1980,1990,2000,2010,2020)
+
+
+#  les couleurs des genres . Y-a-il une conventions ?
+col_genre<-c("blue4","coral4","skyblue","purple" , "darkturquoise","darkgreen",
+                    "orange1","orange3","dodgerblue4","darkred","black","deeppink2","limegreen","red3","grey")
+                    
+col_format=c("brown4",  "skyblue1", "skyblue2", "skyblue3","grey","cyan",  "grey30")
+
+
+col_pays= c("black", "green3","green1","lightblue1", "yellow", "lightblue2", "orange1", "lightblue4", "dodgerblue3", "dodgerblue1", "dodgerblue2","green2","lightblue3", "white", "green4", "orange2", "orange3", "blue3", "blue4")
+
+
+theme_set(theme_minimal())
+
+```
+
+# Transitions de style
+
+Les transitions de style sont une bonne manière de saisir le style Vers qui porte-t-elles ? la méthode consiste juste à calculer la probabilité qu'un album, tagué par un genre, soit aussi tagué par un autre genre, bref, c'est une probabilité conditionnelle. Quelles sont les chance qu'un album de rock soit aussi du blues par exemple ?
+
+Un petit point méthodologique doit être rappelé : la taxinomie de *Discogs*, s'est constituée progressivement. [voir](https://fr.wikipedia.org/wiki/Discogs) ainsi [que](https://support.discogs.com/hc/en-us/articles/360005055213-Database-Guidelines-9-Genres-Styles). Elle n'est pas exclusive, une même oeuvre peut être étiquetée par plusieurs styles. C'est sur cette propriété que nous nous appuyons dans l'analyse.
+
+On ne retient dans l'analyse que les œuvres originales, les rééditions plus tardives, pouvant faire apparaître d'autres genres ultérieurement. On saisit bien le sens du genre au moment où l'œuvre est publiée. Ceci dit c'est un point à discuter, les étiquettes étant données rétrospectivement, sans qu'on ne connaisse la date d'étiquetage. Un risque existe qu'on qualifie aujourd'hui un genre, alors qu'il n'existait pas.
+
+Dans cet essai on intègre pas les genres, mais c'est possible. Un alternative est de prendre pour cibles les genres et de les caractériser par leurs associations aux styles.
+
+```{r 14}
+
+release<- read.csv("./dataarchives/release_work.csv")%>%
+  select(id,year, version)
+
+style<- read_csv("dataarchives/release_style2.txt")%>% #pb encodage ?
+  rename(id=1) %>%
+  mutate(category="Style") %>% mutate(style=tolower(style), 
+                                      style=str_replace_all(style," ",""),
+                                      style=str_replace_all(style,"-","")) %>%
+  select(-category)%>%
+  mutate(n=1)
+
+style1 <-style %>%
+  left_join(release)%>%
+  filter(!is.na(year) & version=="Original")%>%
+  filter(year>1950 & year<2023) %>%
+  mutate(id=paste0(id,"_",year)) %>%
+  select(-version, -year)%>%
+  group_by(id, style) %>%
+  summarise(n = n())
+
+foo1<-style1%>%
+  pivot_wider(id,names_from = "style", values_from="n")
+
+foo1a<- foo1 %>%
+  replace(is.na(.),0)
+write.csv(foo1a, "foo1a.csv")
+foo2<-foo1a %>%
+  mutate(year=str_remove(id,".*_"),
+         id=str_remove(id,"_.*"))
+
+X_style_1<- style1 %>% 
+  group_by(style)%>%
+  summarize(n=n()) %>%
+  filter(n>20000)
+
+X_style_2<-X_style_1$style
+
+# Create a Vector with Columns
+columns = c("year","style","d", "p")
+
+#Create a Empty DataFrame with 0 rows and n columns
+foo = data.frame(matrix(nrow = 0, ncol = length(columns)))
+
+# Assign column names
+colnames(foo) = columns
+
+# print DataFrame
+print(foo)
+
+for (G in X_style_2){
+G<-"deephouse"
+foo3<-foo2 %>%
+filter_(paste0(G, ">", 0))%>%
+pivot_longer(-c(id, year), names_to="style", values_to="value") %>%
+group_by(year, style) %>%
+summarise(n=sum(value))
+
+
+foo4<-foo3%>% 
+  filter(style==G)%>% 
+  select(-style) %>% 
+  rename(!!G := n) 
+
+#library(zoo)
+
+foo5<-foo3 %>% 
+  left_join(foo4)%>%
+mutate_(paste("d=n",G))%>%
+rename(d=5) %>%
+select(-3,-4) %>%
+filter(style !=G) %>% 
+  group_by(style)%>%
+mutate(p=rollapply(d, 3, mean, fill=0,na.rm=TRUE))
+
+
+foo4<-foo2 %>% left_join(foo3)%>% 
+  mutate_(paste("d=n/",G))%>% 
+  rename(d=5) %>% 
+  select(-3,-4) %>% 
+  filter(genre !=G) %>% 
+  group_by(genre)%>% 
+  mutate(p=rollapply(d, 3, mean, fill=0,na.rm=TRUE))
+
+
+ggplot(foo4, aes(x=year, y=reorder(style, p)))+
+geom_tile(aes(fill = p))+
+scale_fill_gradient2(low ="skyblue1", mid = "seashell", high = "deeppink2", midpoint=.1,limits=c(0,.7), name = "Probabilité") +
+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
+labs(title = paste("Un nouvel album de",G, " peut aussi être catégorisé comme..."), x=NULL, y=NULL) +
+scale_x_continuous(breaks = breaks2)
+
+ggsave(filename=paste0("./images/style_spec_", G , ".jpeg"), plot=last_plot(), width = 27, height = 18, units = "cm")
+
+foo5<-foo4%>%
+mutate(paste("target==",G))
+foo<-rbind(foo,foo5)
+}
+```
+

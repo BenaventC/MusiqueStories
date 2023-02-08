@@ -1,0 +1,7 @@
+"0","foo3<-foo2 %>%
+filter_(paste0(G, "">"", 0))%>%
+pivot_longer(-c(id, year), names_to=""style"", values_to=""value"") %>%
+group_by(year, style) %>%
+summarise(n=sum(value))
+"
+"2","`summarise()` has grouped output by 'year'. You can override using the `.groups` argument."

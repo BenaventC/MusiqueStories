@@ -1,0 +1,61 @@
+---
+title: "Musiques : histoire de genres"
+subtitle: "Discogs data"
+author: "Christophe Benavent"
+institute: "Paris Dauphine - PSL"
+date : "today"
+toc: true
+number-sections: true
+number-depth: 2
+format: html
+editor: visual
+execute:
+  echo: true
+  warning: false
+  message: false
+fig-align: "center"
+code-fold: true
+bibliography: musicdiversity.bib
+---
+
+# Une histoire rapide de discogs
+
+Discogs est une plateforme d'informations sur les enregistrements audio, y compris les sorties commerciales, les sorties promotionnelles et les sorties bootleg ou off-label et une place de marchés des enregistrements physiques. Centrée sur la musique électronique, le site inclut maintenant des sorties dans tous les genres et sur tous les formats. Au 2 février 2023, Discogs contenait plus de 16 millions de disques, de plus de 8,4 millions d'artistes, de plus de 1,9 million de labels, provenant de plus de 658 000 comptes d'utilisateurs contributeurs. Les serveurs Discogs, actuellement hébergés sous le nom de domaine discogs.com, appartiennent à Zink Media, Inc. et sont situés à Portland, Oregon, aux États-Unis.
+
+L'objectif initial du DJ Lewandowski était de construire la base de données la plus complète sur la musique électronique, organisée autour des artistes, des labels et des sorties disponibles dans les genres électroniques. En 2003, le système *Discogs* a été entièrement réécrit et, en janvier 2004, il a commencé à prendre en charge d'autres genres, à commencer par le hip-hop. Depuis lors, il s'est étendu pour inclure le rock et le jazz en janvier 2005 et le funk/soul, le latin et le reggae en octobre de la même année. En janvier 2006, le blues et la non-musique (par exemple, les disques de comédie, les enregistrements de terrain, les interviews) ont été ajoutés. La musique classique a commencé à être prise en charge en juin 2007, et en septembre 2007, les derniers genres ont été activés.
+
+Fin 2005, la place de marché *Discogs* a été lancée, avec un modèle d'abonnement pour accéder à l'historique des prix proposés. C'est désormais un système de commission qui prévaut.
+
+# Une base open-source
+
+## Un mécanisme de Crowd sourcing
+
+Evaluer les biais de sélection
+
+-   des vendeurs occidentaux
+
+-   des collectionneurs tournée vers le passé
+
+-   la probabilité que des releases soient déjà enregistrées
+
+-   la proportion d'explorateurs (habibi funk)
+
+## Une API
+
+[API discogs](https://www.discogs.com/developers "API discogs")
+
+## Le DUMP mensuel
+
+[Dump Discogs](https://discogs-data-dumps.s3.us-west-2.amazonaws.com/index.html "Dump Discogs")
+
+Xml à parser pour obtenir une base de données constituée de X fichiers
+
+# La question de l'identifiant unique
+
+Il n'y en a pas vraiment sur le marché, discog la références des collectionneurs et disquaires
+
+Des tentatives :
+
+ifpi et le gRid
+
+https://www.ifpi.org/resource/grid/

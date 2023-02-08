@@ -1,0 +1,6 @@
+"0","foo<-style%>%
+  pivot_wider(id,names_from = ""style"", values_fill = 1)
+"
+"2","Error in `$<-.data.frame`(`*tmp*`, ""call_text"", value = c(""style %>% ..."",  : 
+  replacement has 4 rows, data has 3
+"

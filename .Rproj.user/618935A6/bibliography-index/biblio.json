@@ -1,0 +1,228 @@
+{
+    "sources": [
+        {
+            "DOI": "10.1177/0003122419877135",
+            "ISSN": "0003-1224, 1939-8271",
+            "URL": "http://journals.sagepub.com/doi/10.1177/0003122419877135",
+            "abstract": "We argue word embedding models are a useful tool for the study of culture using a historical analysis of shared understandings of social class as an empirical case. Word embeddings represent semantic relations between words as relationships between vectors in a high-dimensional space, specifying a relational model of meaning consistent with contemporary theories of culture. Dimensions induced by word differences ( rich – poor) in these spaces correspond to dimensions of cultural meaning, and the projection of words onto these dimensions reflects widely shared associations, which we validate with surveys. Analyzing text from millions of books published over 100 years, we show that the markers of class continuously shifted amidst the economic transformations of the twentieth century, yet the basic cultural dimensions of class remained remarkably stable. The notable exception is education, which became tightly linked to affluence independent of its association with cultivated taste.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2022,
+                        8,
+                        10
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Kozlowski",
+                    "given": "Austin C."
+                },
+                {
+                    "family": "Taddy",
+                    "given": "Matt"
+                },
+                {
+                    "family": "Evans",
+                    "given": "James A."
+                }
+            ],
+            "container-title": "American Sociological Review",
+            "container-title-short": "Am Sociol Rev",
+            "id": "kozlowski_geometry_2019",
+            "issue": "5",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "905-949",
+            "title": "The geometry of culture: Analyzing the meanings of class through word embeddings",
+            "title-short": "The geometry of culture",
+            "type": "article-journal",
+            "volume": "84"
+        },
+        {
+            "URL": "http://arxiv.org/abs/1605.09096",
+            "abstract": "Understanding how words change their meanings over time is key to models of language and cultural evolution, but historical data on meaning is scarce, making theories hard to develop and test. Word embeddings show promise as a diachronic tool, but have not been carefully evaluated. We develop a robust methodology for quantifying semantic change by evaluating word embeddings (PPMI, SVD, word2vec) against known historical changes. We then use this methodology to reveal statistical laws of semantic evolution. Using six historical corpora spanning four languages and two centuries, we propose two quantitative laws of semantic change: (i) the law of conformity—the rate of semantic change scales with an inverse power-law of word frequency; (ii) the law of innovation—independent of frequency, words that are more polysemous have higher rates of semantic change.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2022,
+                        8,
+                        10
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Hamilton",
+                    "given": "William L."
+                },
+                {
+                    "family": "Leskovec",
+                    "given": "Jure"
+                },
+                {
+                    "family": "Jurafsky",
+                    "given": "Dan"
+                }
+            ],
+            "id": "hamilton_diachronic_2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018,
+                        10,
+                        25
+                    ]
+                ]
+            },
+            "keyword": "Computer Science - Computation and Language",
+            "number": "arXiv:1605.09096",
+            "publisher": "arXiv",
+            "title": "Diachronic word embeddings reveal statistical laws of semantic change",
+            "type": ""
+        },
+        {
+            "DOI": "10.1098/rsos.150081",
+            "ISSN": "2054-5703",
+            "URL": "https://royalsocietypublishing.org/doi/10.1098/rsos.150081",
+            "abstract": "In modern societies, cultural change seems ceaseless. The flux of fashion is especially obvious for popular music. While much has been written about the origin and evolution of pop, most claims about its history are anecdotal rather than scientific in nature. To rectify this, we investigate the US Billboard Hot 100 between 1960 and 2010. Using music information retrieval and text-mining tools, we analyse the musical properties of approximately 17 000 recordings that appeared in the charts and demonstrate quantitative trends in their harmonic and timbral properties. We then use these properties to produce an audio-based classification of musical styles and study the evolution of musical diversity and disparity, testing, and rejecting, several classical theories of cultural change. Finally, we investigate whether pop musical evolution has been gradual or punctuated. We show that, although pop music has evolved continuously, it did so with particular rapidity during three stylistic “revolutions” around 1964, 1983 and 1991. We conclude by discussing how our study points the way to a quantitative science of cultural change.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        2,
+                        7
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Mauch",
+                    "given": "Matthias"
+                },
+                {
+                    "family": "MacCallum",
+                    "given": "Robert M."
+                },
+                {
+                    "family": "Levy",
+                    "given": "Mark"
+                },
+                {
+                    "family": "Leroi",
+                    "given": "Armand M."
+                }
+            ],
+            "container-title": "Royal Society Open Science",
+            "container-title-short": "R. Soc. open sci.",
+            "id": "mauch_evolution_2015",
+            "issue": "5",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015,
+                        5
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "150081",
+            "title": "The evolution of popular music: USA 1960–2010",
+            "title-short": "The evolution of popular music",
+            "type": "article-journal",
+            "volume": "2"
+        },
+        {
+            "DOI": "10.31234/osf.io/xsb7v",
+            "URL": "https://osf.io/xsb7v",
+            "abstract": "The universality and diversity of music in human societies make it an important research model for understanding how cultural features change over time and space. In this chapter, we review research on the cultural evolution of music, broken down into three major approaches: 1) corpus-based approaches that use large datasets to infer evolutionary patterns, 2) experimental approaches that explore cultural transmission and transformation, and 3) research on “music-like” behaviors in non-human species, such as bird and whale song, that highlights shared mechanisms and future directions. Finally, we discuss applications of this research to issues like copyright enforcement and algorithmic inequality. Given the diversity of musical datasets that have yet to be fully leveraged, we think that music has the potential to become a powerful research model for cultural evolution.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        2,
+                        7
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Youngblood",
+                    "given": "Mason"
+                },
+                {
+                    "family": "Ozaki",
+                    "given": "Yuto"
+                },
+                {
+                    "family": "Savage",
+                    "given": "Patrick E."
+                }
+            ],
+            "genre": "preprint",
+            "id": "youngblood_cultural_2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        10,
+                        25
+                    ]
+                ]
+            },
+            "publisher": "PsyArXiv",
+            "title": "Cultural evolution and music",
+            "type": "report"
+        },
+        {
+            "DOI": "10.2307/2094343",
+            "ISSN": "00031224",
+            "URL": "http://www.jstor.org/stable/2094343?origin=crossref",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        2,
+                        7
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Peterson",
+                    "given": "Richard A."
+                },
+                {
+                    "family": "Berger",
+                    "given": "David G."
+                }
+            ],
+            "container-title": "American Sociological Review",
+            "container-title-short": "American Sociological Review",
+            "id": "peterson_cycles_1975",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1975,
+                        4
+                    ]
+                ]
+            },
+            "page": "158",
+            "title": "Cycles in symbol production: The case of popular music",
+            "title-short": "Cycles in symbol production",
+            "type": "article-journal",
+            "volume": "40"
+        }
+    ],
+    "project_biblios": []
+}
