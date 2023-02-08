@@ -1,7 +1,7 @@
 {
     "id": "A6C8CBDC",
-    "path": "~/_AtelierR/_discogs/MusiqueStories/script01_ discogsdata.qmd",
-    "project_path": "script01_ discogsdata.qmd",
+    "path": "~/_AtelierR/_discogs/MusiqueStories/script01_discogsdata.qmd",
+    "project_path": "script01_discogsdata.qmd",
     "type": "quarto_markdown",
     "hash": "52140695",
     "contents": "",
@@ -15,18 +15,18 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "52,0",
+        "cursorPosition": "0,0",
         "scrollLine": "0",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "2651:990",
+        "rmdVisualModeLocation": "353:0",
         "docOutlineVisible": "1"
     },
     "folds": "",
-    "lastKnownWriteTime": 1675851749,
+    "lastKnownWriteTime": 1675853981,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1675851749943,
+    "last_content_update": 1675853981248,
     "read_only": false,
     "read_only_alternatives": []
 }

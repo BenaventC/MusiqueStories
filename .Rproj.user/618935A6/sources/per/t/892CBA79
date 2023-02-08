@@ -1,9 +1,9 @@
 {
     "id": "892CBA79",
-    "path": "~/_AtelierR/_discogs/MusiqueStories/script00_ cadrage_biblio.qmd",
-    "project_path": "script00_ cadrage_biblio.qmd",
+    "path": "~/_AtelierR/_discogs/MusiqueStories/script00_cadrage_biblio.qmd",
+    "project_path": "script00_cadrage_biblio.qmd",
     "type": "quarto_markdown",
-    "hash": "154265758",
+    "hash": "662570041",
     "contents": "",
     "dirty": false,
     "created": 1675850428149.0,
@@ -18,15 +18,15 @@
         "cursorPosition": "55,0",
         "scrollLine": "0",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "2131:1743",
+        "rmdVisualModeLocation": "353:0",
         "docOutlineVisible": "1"
     },
     "folds": "",
-    "lastKnownWriteTime": 1675851350,
+    "lastKnownWriteTime": 1675854025,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1675851350749,
+    "last_content_update": 1675854025150,
     "read_only": false,
     "read_only_alternatives": []
 }
