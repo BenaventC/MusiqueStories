@@ -6,8 +6,8 @@ Une question générale sur l'évolution des styles musiques et de la structure 
 
 C'est un "work in progress" les éléments sont ajoutés à mesure des analyses. 
 
-* [Introduction](https://benaventc.github.io/MusiqueStories/script00 _cadrage_biblio.html)
-* [Données Discogs](https://benaventc.github.io/MusiqueStories/script01 _discogsdata.html))
+* [Introduction](https://benaventc.github.io/MusiqueStories/script00_cadrage_biblio.html)
+* [Données Discogs](https://benaventc.github.io/MusiqueStories/script01_discogsdata.html))
 * parsing xml du dump discog et API
 * [Oeuvres originales et rééditions](https://benaventc.github.io/MusiqueStories/script03reedition.html) : il s'agit d'examiner la production en distinguant les productions originales des rééditions.  
 * [dégenrer les genres](https://benaventc.github.io/MusiqueStories/script04_crossgenre.html)
