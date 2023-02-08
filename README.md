@@ -3,8 +3,9 @@
 Un recueil d'analyse des données Discogs qui porte sur 80 ans, concerne 7 millions d'oeuvres originales, 2 millions d'artyiste, 700 000 labels, des dizaines de milliers de morceaux.  Une question générale sur l'évolution des styles musiques et de la structure de cet espace. Des interrogations sur le moteur : le jeu de la compétition et de la légitimité.
 
 C'est un "work in progress" les éléments sont ajoutés à mesure des analyses. 
-
-* parsing xml du dump discog. 
+* [Introduction](https://benaventc.github.io/MusiqueStories/script00_cadrage_biblio.html)
+* [Données Discogs](https://benaventc.github.io/MusiqueStories/script01_discogsdata.html))
+* parsing xml du dump discog et API
 * [Oeuvres originales et rééditions](https://benaventc.github.io/MusiqueStories/script03reedition.html) : il s'agit d'examiner la production en distinguant les productions originales des rééditions.  
 * [dégenrer les genres](https://benaventc.github.io/MusiqueStories/script04_crossgenre.html)
 * [Styles embeddings](https://benaventc.github.io/MusiqueStories/script04style.html) : pour mieux comprendre l'espace des styles et sa structuration. 
